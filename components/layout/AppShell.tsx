@@ -56,7 +56,7 @@ export function AppShell({ children }: AppShellProps) {
         aria-hidden="true"
       />
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-72 transform transition-[width,transform] duration-200 ease-in-out lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 shrink-0 overflow-visible transform transition-[width,transform] duration-200 ease-in-out lg:static lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } ${collapsed ? "lg:w-14" : "lg:w-72"}`}
       >
