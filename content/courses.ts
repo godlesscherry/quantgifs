@@ -125,4 +125,90 @@ export const courses: Course[] = [
       },
     ],
   },
+  {
+    slug: "econometrics",
+    title: "Econometrics",
+    description:
+      "Statistical methods for economic data: transformation, estimation, and inference.",
+    modules: [
+      {
+        slug: "data-transformation",
+        title: "Data Transformation",
+        summary:
+          "Preparing and reshaping data for econometric modeling and regression.",
+        lessons: [
+          {
+            slug: "linear-regression",
+            title: "Linear Regression",
+            summary:
+              "Ordinary least squares, assumptions, and interpretation of linear models.",
+            concepts: [
+              {
+                slug: "core-model-components",
+                title: "The Core Model Components",
+                summary:
+                  "Predictors, responses, the linear function, coefficients, the least-squares line, and identifiability.",
+                formulas: [
+                  "(X_1, Y_1), \\ldots, (X_n, Y_n)",
+                  "f(X) = \\beta_0 + \\beta_1 X + \\varepsilon",
+                  "\\min_{\\beta_0, \\beta_1} \\sum_{i=1}^{n} (Y_i - \\beta_0 - \\beta_1 X_i)^2",
+                ],
+                body: [
+                  {
+                    heading: "Predictor (X) and Response (Y)",
+                    paragraphs: [
+                      "Each observation is a pair (Xᵢ, Yᵢ). The predictor X is plotted on the horizontal axis; the response Y on the vertical axis. Together they form a scatter of n points in the plane.",
+                      "Use the **X & Y** step in the visualization to see labeled pairs (X₁, Y₁), …, (Xₙ, Yₙ).",
+                    ],
+                  },
+                  {
+                    heading: "Linear Regression Function",
+                    paragraphs: [
+                      "The model posits that Y is related to X through a linear function plus noise: f(X) = β₀ + β₁X + ε, where ε captures random deviation from the line.",
+                      "The **f(X)** step overlays the structural line; randomness appears as vertical scatter of the observed points around it.",
+                    ],
+                  },
+                  {
+                    heading: "Intercept (β₀) and Slope (β₁)",
+                    paragraphs: [
+                      "β₀ is the value of f(X) when X = 0—the point where the line crosses the y-axis (when zero is in the range of interest). β₁ is the change in the fitted value per one-unit increase in X, i.e. the steepness of the line.",
+                      "The **β₀ & β₁** step highlights the intercept on the y-axis and a unit run-rise segment for the slope.",
+                    ],
+                  },
+                  {
+                    heading: "Least-Squares Line",
+                    paragraphs: [
+                      "Among all lines, ordinary least squares chooses β̂₀ and β̂₁ to minimize the sum of squared vertical distances from each point to the line: Σᵢ (Yᵢ − β̂₀ − β̂₁Xᵢ)².",
+                      "The **OLS line** step shows those vertical residuals and shaded squares suggesting squared error.",
+                    ],
+                    callout: {
+                      type: "note",
+                      title: "Key insight",
+                      content:
+                        "OLS uses vertical residuals (errors in Y), not perpendicular distances to the line. That choice matches predicting Y from X.",
+                    },
+                  },
+                  {
+                    heading: "Identifiability Constraint",
+                    paragraphs: [
+                      "To estimate a unique slope, the X values cannot all be identical. If every Xᵢ equals the same constant, all points lie on a vertical line and infinitely many lines pass through them—β₁ is not identified.",
+                      "Toggle **Varied X** vs **All X equal** under **Identifiability** to compare a well-spread design with a degenerate one.",
+                    ],
+                    callout: {
+                      type: "warning",
+                      title: "Design requirement",
+                      content:
+                        "In matrix form, identifiability requires that X has full column rank (no perfect collinearity). Constant X is the simplest violation.",
+                    },
+                  },
+                ],
+                visualizationKey: "linear-regression-core",
+                tags: ["regression", "OLS", "linear model"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
