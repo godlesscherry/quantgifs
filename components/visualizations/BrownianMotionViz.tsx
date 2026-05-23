@@ -7,14 +7,27 @@ const WIDTH = 600;
 const HEIGHT = 300;
 const STEPS = 80;
 
+/** Deterministic PRNG so SSR and client produce identical paths per seed. */
+function createSeededRandom(seed: number): () => number {
+  let state = Math.floor(seed * 10000) || 1;
+  return () => {
+    state += 0x6d2b79f5;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 function generatePath(seed: number): string {
+  const random = createSeededRandom(seed);
   let x = 0;
   let y = HEIGHT / 2;
   const stepX = WIDTH / STEPS;
   const points: string[] = [`M ${x} ${y}`];
 
   for (let i = 1; i <= STEPS; i++) {
-    const noise = Math.sin(i * 0.3 + seed) * 8 + (Math.random() - 0.5) * 20;
+    const noise = Math.sin(i * 0.3 + seed) * 8 + (random() - 0.5) * 20;
     x += stepX;
     y = Math.max(20, Math.min(HEIGHT - 20, y + noise));
     points.push(`L ${x} ${y}`);

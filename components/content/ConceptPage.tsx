@@ -81,14 +81,17 @@ export function ConceptPage({ concept }: ConceptPageProps) {
         <>
           <VisualizationFrame
             title={vizTitle}
-            description="Interactive placeholder — ready for frame capture export."
+            description="Interact with the chart, then export the animation as a GIF below."
             containerRef={frameRef}
           >
             <VisualizationRenderer
               visualizationKey={concept.visualizationKey}
             />
           </VisualizationFrame>
-          <ExportPanel visualizationKey={concept.visualizationKey} />
+          <ExportPanel
+            visualizationKey={concept.visualizationKey}
+            frameRef={frameRef}
+          />
         </>
       ) : (
         <p className="mt-6 text-sm text-red-400">
