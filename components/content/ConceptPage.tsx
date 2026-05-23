@@ -90,6 +90,7 @@ export function ConceptPage({ concept }: ConceptPageProps) {
           </VisualizationFrame>
           <ExportPanel
             visualizationKey={concept.visualizationKey}
+            exportTitle={vizTitle}
             frameRef={frameRef}
           />
         </>

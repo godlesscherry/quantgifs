@@ -6,6 +6,7 @@ import type { ExportFormat, ExportStatus } from "./exportTypes";
 
 type ExportPanelProps = {
   visualizationKey: string;
+  exportTitle: string;
   frameRef: RefObject<HTMLDivElement | null>;
 };
 
@@ -23,7 +24,11 @@ const statusLabels: Record<ExportStatus, string> = {
   error: "Export failed.",
 };
 
-export function ExportPanel({ visualizationKey, frameRef }: ExportPanelProps) {
+export function ExportPanel({
+  visualizationKey,
+  exportTitle,
+  frameRef,
+}: ExportPanelProps) {
   const [status, setStatus] = useState<ExportStatus>("idle");
   const [message, setMessage] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
@@ -51,6 +56,7 @@ export function ExportPanel({ visualizationKey, frameRef }: ExportPanelProps) {
       setStatus("rendering");
       await exportVisualizationGif({
         visualizationKey,
+        title: exportTitle,
         frameElement,
         onProgress: setProgress,
       });
