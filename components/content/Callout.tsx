@@ -7,9 +7,9 @@ type CalloutProps = {
 };
 
 const styles: Record<CalloutType, string> = {
-  info: "border-blue-200 bg-blue-50 text-blue-900",
-  note: "border-amber-200 bg-amber-50 text-amber-900",
-  warning: "border-orange-200 bg-orange-50 text-orange-900",
+  info: "border-blue-700 bg-blue-950/50 text-blue-200",
+  note: "border-amber-700 bg-amber-950/50 text-amber-200",
+  warning: "border-orange-700 bg-orange-950/50 text-orange-200",
 };
 
 export function Callout({ type, title, children }: CalloutProps) {

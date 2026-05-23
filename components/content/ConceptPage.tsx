@@ -29,16 +29,16 @@ export function ConceptPage({ concept }: ConceptPageProps) {
           {concept.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700"
+              className="rounded-full bg-indigo-950 px-2.5 py-0.5 text-xs font-medium text-indigo-300"
             >
               {tag}
             </span>
           ))}
         </div>
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-100">
           {concept.title}
         </h1>
-        <p className="mt-2 text-lg text-slate-600">{concept.summary}</p>
+        <p className="mt-2 text-lg text-slate-400">{concept.summary}</p>
       </header>
 
       {concept.formulas.length > 0 && (
@@ -56,14 +56,14 @@ export function ConceptPage({ concept }: ConceptPageProps) {
         {concept.body.map((section, index) => (
           <div key={index}>
             {section.heading && (
-              <h2 className="mb-2 text-xl font-semibold text-slate-900">
+              <h2 className="mb-2 text-xl font-semibold text-slate-100">
                 {section.heading}
               </h2>
             )}
             {section.paragraphs.map((paragraph, pIndex) => (
               <p
                 key={pIndex}
-                className="mb-3 leading-relaxed text-slate-700 last:mb-0"
+                className="mb-3 leading-relaxed text-slate-300 last:mb-0"
               >
                 {paragraph}
               </p>
@@ -91,7 +91,7 @@ export function ConceptPage({ concept }: ConceptPageProps) {
           <ExportPanel visualizationKey={concept.visualizationKey} />
         </>
       ) : (
-        <p className="mt-6 text-sm text-red-600">
+        <p className="mt-6 text-sm text-red-400">
           Visualization not found for key: {concept.visualizationKey}
         </p>
       )}

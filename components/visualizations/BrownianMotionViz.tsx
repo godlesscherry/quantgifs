@@ -45,7 +45,7 @@ export function BrownianMotionViz() {
       role="img"
       aria-label="Simulated Brownian motion paths"
     >
-      <rect width={WIDTH} height={HEIGHT} fill="#f8fafc" />
+      <rect width={WIDTH} height={HEIGHT} fill="#0f172a" />
       {[0.25, 0.5, 0.75].map((ratio) => (
         <line
           key={ratio}
@@ -53,7 +53,7 @@ export function BrownianMotionViz() {
           y1={HEIGHT * ratio}
           x2={WIDTH}
           y2={HEIGHT * ratio}
-          stroke="#e2e8f0"
+          stroke="#334155"
           strokeDasharray="4 4"
         />
       ))}
@@ -62,7 +62,7 @@ export function BrownianMotionViz() {
           key={`${seed}-${index}`}
           d={path}
           fill="none"
-          stroke={["#6366f1", "#0ea5e9", "#14b8a6"][index]}
+          stroke={["#818cf8", "#38bdf8", "#2dd4bf"][index]}
           strokeWidth={2}
           initial={{ pathLength: 0, opacity: 0.6 }}
           animate={{ pathLength: 1, opacity: 1 }}

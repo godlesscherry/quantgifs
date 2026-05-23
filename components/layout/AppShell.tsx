@@ -11,9 +11,9 @@ export function AppShell({ children }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-slate-100">
+    <div className="flex min-h-screen bg-slate-950">
       <div
-        className={`fixed inset-0 z-40 bg-black/40 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-black/60 lg:hidden ${
           sidebarOpen ? "block" : "hidden"
         }`}
         onClick={() => setSidebarOpen(false)}
@@ -27,16 +27,16 @@ export function AppShell({ children }: AppShellProps) {
         <Sidebar />
       </div>
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center gap-3 border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
+        <header className="flex items-center gap-3 border-b border-slate-800 bg-slate-900 px-4 py-3 lg:hidden">
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}
-            className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            className="rounded-md border border-slate-700 px-3 py-1.5 text-sm font-medium text-slate-300 hover:bg-slate-800"
             aria-label="Open navigation"
           >
             Menu
           </button>
-          <span className="text-sm font-semibold text-slate-900">QuantGifs</span>
+          <span className="text-sm font-semibold text-slate-100">QuantGifs</span>
         </header>
         <main className="flex-1 overflow-auto p-6 lg:p-8">
           <div className="mx-auto max-w-4xl">{children}</div>

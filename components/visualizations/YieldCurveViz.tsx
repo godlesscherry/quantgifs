@@ -10,6 +10,17 @@ import {
   YAxis,
 } from "recharts";
 
+const chartTheme = {
+  grid: "#334155",
+  tick: "#94a3b8",
+  label: "#94a3b8",
+  tooltip: {
+    backgroundColor: "#1e293b",
+    border: "1px solid #334155",
+    color: "#e2e8f0",
+  },
+};
+
 const yieldCurveData = [
   { maturity: 1, yield: 4.85 },
   { maturity: 3, yield: 4.62 },
@@ -30,38 +41,46 @@ export function YieldCurveViz() {
         data={yieldCurveData}
         margin={{ top: 16, right: 16, left: 0, bottom: 8 }}
       >
-        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+        <CartesianGrid strokeDasharray="3 3" stroke={chartTheme.grid} />
         <XAxis
           dataKey="maturity"
-          tick={{ fontSize: 11, fill: "#64748b" }}
+          tick={{ fontSize: 11, fill: chartTheme.tick }}
+          stroke={chartTheme.grid}
           label={{
             value: "Maturity (months)",
             position: "insideBottom",
             offset: -4,
             fontSize: 11,
+            fill: chartTheme.label,
           }}
         />
         <YAxis
           domain={[3.4, 5.2]}
-          tick={{ fontSize: 11, fill: "#64748b" }}
+          tick={{ fontSize: 11, fill: chartTheme.tick }}
+          stroke={chartTheme.grid}
           label={{
             value: "Yield (%)",
             angle: -90,
             position: "insideLeft",
             fontSize: 11,
+            fill: chartTheme.label,
           }}
         />
         <Tooltip
           formatter={(value) => [`${value}%`, "Yield"]}
           labelFormatter={(label) => `${label} months`}
-          contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid #e2e8f0" }}
+          contentStyle={{
+            fontSize: 12,
+            borderRadius: 8,
+            ...chartTheme.tooltip,
+          }}
         />
         <Line
           type="monotone"
           dataKey="yield"
-          stroke="#0ea5e9"
+          stroke="#38bdf8"
           strokeWidth={2.5}
-          dot={{ r: 3, fill: "#0ea5e9" }}
+          dot={{ r: 3, fill: "#38bdf8" }}
         />
       </LineChart>
     </ResponsiveContainer>

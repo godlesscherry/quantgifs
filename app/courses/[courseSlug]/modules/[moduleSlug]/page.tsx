@@ -23,8 +23,8 @@ export default async function ModulePage({ params }: PageProps) {
     <div>
       <Breadcrumbs items={breadcrumbs} />
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">{module.title}</h1>
-        <p className="mt-2 text-lg text-slate-600">{module.summary}</p>
+        <h1 className="text-3xl font-bold text-slate-100">{module.title}</h1>
+        <p className="mt-2 text-lg text-slate-400">{module.summary}</p>
       </header>
       <div className="grid gap-4">
         {module.lessons.map((lesson) => (

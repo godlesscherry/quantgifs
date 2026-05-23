@@ -22,8 +22,8 @@ export default async function CoursePage({ params }: PageProps) {
     <div>
       <Breadcrumbs items={breadcrumbs} />
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">{course.title}</h1>
-        <p className="mt-2 text-lg text-slate-600">{course.description}</p>
+        <h1 className="text-3xl font-bold text-slate-100">{course.title}</h1>
+        <p className="mt-2 text-lg text-slate-400">{course.description}</p>
       </header>
       <div className="grid gap-4">
         {course.modules.map((module) => (

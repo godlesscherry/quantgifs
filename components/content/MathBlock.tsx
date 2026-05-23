@@ -24,7 +24,7 @@ export function MathBlock({ latex, display = false }: MathBlockProps) {
   if (display) {
     return (
       <div
-        className="my-4 overflow-x-auto rounded-lg border border-slate-200 bg-white px-4 py-3 text-center"
+        className="my-4 overflow-x-auto rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 text-center"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
