@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { BlackScholesViz } from "@/components/visualizations/BlackScholesViz";
 import { BrownianMotionViz } from "@/components/visualizations/BrownianMotionViz";
 import { LinearRegressionCoreViz } from "@/components/visualizations/LinearRegressionCoreViz";
+import { LinearRegressionMetricsViz } from "@/components/visualizations/LinearRegressionMetricsViz";
 import { YieldCurveViz } from "@/components/visualizations/YieldCurveViz";
 
 export const visualizationRegistry: Record<string, ComponentType> = {
@@ -9,6 +10,7 @@ export const visualizationRegistry: Record<string, ComponentType> = {
   "black-scholes": BlackScholesViz,
   "yield-curve": YieldCurveViz,
   "linear-regression-core": LinearRegressionCoreViz,
+  "linear-regression-metrics": LinearRegressionMetricsViz,
 };
 
 export function getVisualization(
@@ -22,4 +24,5 @@ export const visualizationTitles: Record<string, string> = {
   "black-scholes": "Option Payoff at Expiry",
   "yield-curve": "Sample Yield Curve",
   "linear-regression-core": "Core Linear Regression Components",
+  "linear-regression-metrics": "Error and Fit Metrics",
 };

@@ -205,6 +205,54 @@ export const courses: Course[] = [
                 visualizationKey: "linear-regression-core",
                 tags: ["regression", "OLS", "linear model"],
               },
+              {
+                slug: "error-and-fit-metrics",
+                title: "Error and Fit Metrics",
+                summary:
+                  "Residuals, the R² statistic, and the MLE estimate of error variance for assessing model fit.",
+                formulas: [
+                  "r_i = Y_i - \\hat{Y}_i",
+                  "R^2 = 1 - \\frac{\\sum_{i=1}^{n} r_i^2}{\\sum_{i=1}^{n} (Y_i - \\bar{Y})^2}",
+                  "\\hat{\\sigma}^2 = \\frac{1}{n} \\sum_{i=1}^{n} r_i^2",
+                ],
+                body: [
+                  {
+                    heading: "Residuals (rᵢ)",
+                    paragraphs: [
+                      "For each observation, the residual rᵢ = Yᵢ − Ŷᵢ is the vertical distance between the observed response and the fitted value on the OLS line. Positive residuals lie above the line; negative residuals lie below.",
+                      "Use the **Residuals** step to see labeled vertical gaps r₁, …, rₙ connecting each point to its prediction on the regression line.",
+                    ],
+                  },
+                  {
+                    heading: "R² Statistic",
+                    paragraphs: [
+                      "The coefficient of determination R² measures the proportion of total variability in Y explained by the linear model: R² = 1 − SSE/SST, where SSE = Σ rᵢ² and SST = Σ (Yᵢ − Ȳ)².",
+                      "The **R²** step decomposes each observation into an explained segment (Ŷ − Ȳ, blue) and a residual segment (Y − Ŷ, pink). A higher R² indicates a tighter fit.",
+                    ],
+                    callout: {
+                      type: "note",
+                      title: "Interpretation",
+                      content:
+                        "R² = 1 means all points lie exactly on the fitted line; R² = 0 means the model explains no more variation than predicting the sample mean Ȳ.",
+                    },
+                  },
+                  {
+                    heading: "Error Variance (σ̂²)",
+                    paragraphs: [
+                      "Under the Gaussian noise assumption, the maximum-likelihood estimate of the error variance is σ̂² = (1/n) Σ rᵢ² — the average squared residual. It quantifies how far observations typically scatter around the fitted line.",
+                      "The **σ̂²** step shows the computed MLE alongside residual spread. Larger σ̂² means greater unexplained noise in the response.",
+                    ],
+                    callout: {
+                      type: "info",
+                      title: "MLE vs unbiased",
+                      content:
+                        "The unbiased estimator divides by n − 2 in simple regression (n − k − 1 in general). The MLE uses n, which slightly underestimates σ² in small samples.",
+                    },
+                  },
+                ],
+                visualizationKey: "linear-regression-metrics",
+                tags: ["regression", "R-squared", "residuals", "goodness of fit"],
+              },
             ],
           },
         ],

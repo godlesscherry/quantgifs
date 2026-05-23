@@ -1,6 +1,7 @@
 import { BlackScholesViz } from "./BlackScholesViz";
 import { BrownianMotionViz } from "./BrownianMotionViz";
 import { LinearRegressionCoreViz } from "./LinearRegressionCoreViz";
+import { LinearRegressionMetricsViz } from "./LinearRegressionMetricsViz";
 import { YieldCurveViz } from "./YieldCurveViz";
 
 type VisualizationRendererProps = {
@@ -19,6 +20,8 @@ export function VisualizationRenderer({
       return <YieldCurveViz />;
     case "linear-regression-core":
       return <LinearRegressionCoreViz />;
+    case "linear-regression-metrics":
+      return <LinearRegressionMetricsViz />;
     default:
       return null;
   }
@@ -29,6 +32,7 @@ export function hasVisualization(visualizationKey: string): boolean {
     visualizationKey === "brownian-motion" ||
     visualizationKey === "black-scholes" ||
     visualizationKey === "yield-curve" ||
-    visualizationKey === "linear-regression-core"
+    visualizationKey === "linear-regression-core" ||
+    visualizationKey === "linear-regression-metrics"
   );
 }
