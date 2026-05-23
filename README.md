@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuantGifs
+
+A local-first web studio for visualizing MSc Financial Engineering concepts and exporting animations as GIF, MP4, or PNG sequences.
+
+QuantGifs is **not** an LMS, quiz app, or SaaS platform. It is a personal visualization workspace organized as:
+
+**Course → Module → Lesson → Concept**
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) and navigate to the sample course.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Other Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint      # ESLint
+npm run build     # Production build
+npx tsc --noEmit  # Type check
+```
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js** (App Router) + **TypeScript**
+- **Tailwind CSS** for styling
+- **KaTeX** for LaTeX math rendering
+- **Framer Motion** for animations
+- **Recharts** for charts
+- Local TypeScript content files (no database)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Folder Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+quantgifs/
+├── app/                    # Next.js routes
+│   ├── page.tsx            # Landing page
+│   └── courses/[courseSlug]/
+│       └── modules/[moduleSlug]/
+│           └── lessons/[lessonSlug]/
+│               └── concepts/[conceptSlug]/
+├── components/
+│   ├── layout/             # AppShell, Sidebar, Breadcrumbs
+│   ├── content/            # ConceptPage, MathBlock, Callout
+│   ├── visualizations/     # Viz components + VisualizationFrame
+│   └── export/             # ExportPanel (placeholder)
+├── content/
+│   └── courses.ts          # All course/content data
+├── lib/
+│   ├── content.ts          # Types + content helpers
+│   ├── routes.ts           # URL builders + breadcrumbs
+│   └── visualizations.ts   # Viz component registry
+└── public/
+```
 
-## Deploy on Vercel
+## Sample Content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Course:** MSc Financial Engineering
+- **Module:** Stochastic Calculus & Derivatives
+- **Lesson:** Introduction to Financial Modeling
+- **Concepts:** Brownian Motion, Black-Scholes Model, Yield Curve
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Adding a New Concept
+
+1. Open [`content/courses.ts`](content/courses.ts).
+2. Add a concept object to the appropriate lesson:
+
+```typescript
+{
+  slug: "my-concept",
+  title: "My Concept",
+  summary: "Short description.",
+  formulas: ["E = mc^2"],
+  body: [
+    {
+      heading: "Section",
+      paragraphs: ["Educational text here."],
+    },
+  ],
+  visualizationKey: "my-concept", // must match registry key
+  tags: ["tag1"],
+}
+```
+
+3. If the concept needs a visualization, create the component and register it (see below).
+4. Navigate to the concept URL or use the sidebar.
+
+## Adding a New Visualization
+
+1. Create a client component in `components/visualizations/`, e.g. `MyConceptViz.tsx`.
+2. Register it in [`lib/visualizations.ts`](lib/visualizations.ts):
+
+```typescript
+export const visualizationRegistry = {
+  // ...
+  "my-concept": MyConceptViz,
+};
+```
+
+3. Set `visualizationKey: "my-concept"` on the concept in `content/courses.ts`.
+4. Wrap the component in `VisualizationFrame` via `ConceptPage` (automatic when the key matches).
+
+Use SVG or Canvas inside `VisualizationFrame` for future frame-capture export.
+
+## Export Roadmap
+
+The export panel (`components/export/ExportPanel.tsx`) is a **placeholder**. Planned pipeline:
+
+1. **Frame capture** — Read pixels from the `VisualizationFrame` container (canvas `toDataURL`, or `html2canvas` for DOM/SVG).
+2. **Encoding**
+   - GIF: client-side encoder (e.g. gif.js)
+   - MP4: ffmpeg.wasm or a serverless function
+   - PNG sequence: zip individual frames
+3. **Download** — Trigger browser download of the encoded file.
+
+## License
+
+Personal project — use and extend as needed.
